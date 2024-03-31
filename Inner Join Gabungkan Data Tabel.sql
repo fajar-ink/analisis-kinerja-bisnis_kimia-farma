@@ -13,8 +13,8 @@ CASE
   when p.price between 100000 and 300000 then 0.2 * (p.price-(p.price * ft.discount_percentage))
   when p.price between 300000 and 500000 then 0.25 * (p.price-(p.price * ft.discount_percentage))
   else 0.3 * (p.price-(p.price * ft.discount_percentage))
-end as nett_profit
-
+end as nett_profit,
+ft.rating as rating_transaksi
 
 FROM rakamin-kf-analytics-418715.kimia_farma.kf_final_transaction as ft
 INNER JOIN rakamin-kf-analytics-418715.kimia_farma.kf_kantor_cabang as kc
