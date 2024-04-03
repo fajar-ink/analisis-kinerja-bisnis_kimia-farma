@@ -1,5 +1,5 @@
 CREATE TABLE kimia_farma.contoh_table AS
-SELECT transaction_id, date, branch_id, kota, provinsi, rating_cabang, customer_name, product_id, product_name, actual_price, discount_percentage, persentase_gross_laba, nett_sales, (actual_price * persentase_gross_laba) - (actual_price * nett_sales) nett_profit, rating_transaksi
+SELECT transaction_id, date, branch_id, kota, provinsi, rating_cabang, customer_name, product_id, product_name, actual_price, discount_percentage, persentase_gross_laba, nett_sales, (actual_price * persentase_gross_laba) - (actual_price - nett_sales) nett_profit, rating_transaksi
 
 FROM (
   SELECT ft.transaction_id, ft.date, kc.branch_id, kc.kota, kc.provinsi, kc.rating rating_cabang, ft.customer_name, p.product_id, p.product_name, p.price actual_price, ft.discount_percentage,
@@ -11,8 +11,6 @@ FROM (
     WHEN p.price > 500000 then 0.30
   END persentase_gross_laba,
   p.price-(p.price*discount_percentage) nett_sales, ft.rating rating_transaksi
-
-
 
   FROM kimia_farma.kf_final_transaction AS ft
   INNER JOIN kimia_farma.kf_kantor_cabang AS kc
