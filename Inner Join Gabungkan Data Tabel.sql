@@ -1,4 +1,4 @@
-CREATE TABLE kimia_farma.contoh_table AS
+CREATE TABLE kimia_farma.kf_analisis_kinerja_bisnis AS
 SELECT transaction_id, date, branch_id, kota, provinsi, rating_cabang, customer_name, product_id, product_name, actual_price, discount_percentage, persentase_gross_laba, nett_sales, (actual_price * persentase_gross_laba) - (actual_price - nett_sales) nett_profit, rating_transaksi
 
 FROM (
